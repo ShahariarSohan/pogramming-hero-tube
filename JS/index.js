@@ -7,8 +7,7 @@ const displayButton = async () => {
         const buttonContainer = document.getElementById("button-container")
         const button = document.createElement("div")
         button.innerHTML = `
-              <button class="btn">${element.category}</button>
-          
+              <button class="btn">${element.category}</button>  
         `
         buttonContainer.appendChild(button)
     });
@@ -29,9 +28,13 @@ const displayVideos = async () => {
                src="${element.thumbnail}"
                alt="Videos" />
            </figure>
-           <div class="card-body">
-             <h2 class="card-title">Card Title</h2>
-             <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+           <div class="p-2 space-y-2 flex gap-3 items-start">
+           <img class="w-10 h-10 rounded-full object-cover" src="${element.authors[0].profile_picture}"/>
+           <div class="space-y-2">
+             <h2 class="card-title font-bold">${element.title}</h2>
+             <p class="text-sm flex items-center gap-2">${element.authors[0].profile_name}<span>${element.authors[0].verified ? '<img class="w-8" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="" />' : ""}</span></p>
+             <p class="text-sm font-semibold">${element.others.views}</p>
+           </div>             
            </div>
          </div>
         `
