@@ -30,9 +30,9 @@ const displayVideos = async () => {
            </figure>
            <div class="p-2 space-y-2 flex gap-3 items-start">
            <img class="w-10 h-10 rounded-full object-cover" src="${element.authors[0].profile_picture}"/>
-           <div class="space-y-2">
-             <h2 class="card-title font-bold">${element.title}</h2>
-             <p class="text-sm flex items-center gap-2">${element.authors[0].profile_name}<span>${element.authors[0].verified ? '<img class="w-8" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="" />' : ""}</span></p>
+           <div class="">
+             <h2 class=" font-bold">${element.title}</h2>
+             <p class="text-sm flex items-center gap-2">${element.authors[0].profile_name}<span>${element.authors[0].verified ? '<img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="" />' : ""}</span></p>
              <p class="text-sm font-semibold">${element.others.views}</p>
            </div>             
            </div>
