@@ -15,6 +15,7 @@
   </head>
   <body>
     <header>
+      <!-- nav container -->
       <nav>
         <div class="navbar bg-base-100 shadow-sm flex-col md:flex-row">
           <div class="navbar-start">
@@ -30,9 +31,16 @@
             <a class="btn">Sort By View</a>
           </div>
         </div>
+        <!-- button section -->
+        <div id="button-container" class="flex gap-5 justify-center p-5">
+          <button class="btn">All</button>
+        </div>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <!-- content container -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"></div>
+    </main>
     <footer></footer>
 
     <script src="JS/index.js"></script>
