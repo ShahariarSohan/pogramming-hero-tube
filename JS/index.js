@@ -1,4 +1,5 @@
 // display button
+
 const displayButton = async () => {
   const res = await fetch("https://openapi.programming-hero.com/api/phero-tube/categories")
   const data = await res.json()
@@ -15,6 +16,7 @@ const displayButton = async () => {
 displayButton();
 
 // display videos by category
+
 const displayVideos = async (id) => {
   const contentContainer = document.getElementById("content-container")
   contentContainer.innerHTML = "";
@@ -69,7 +71,9 @@ const displayVideos = async (id) => {
   }
 
 }
+
 // display all videos 
+
 const displayAllVideos = async () => {
   const contentContainer = document.getElementById("content-container")
   contentContainer.innerHTML = "";
@@ -108,3 +112,44 @@ const displayAllVideos = async () => {
   });
 }
 displayAllVideos()
+
+// display videos by views
+
+const displayByViews = async () => {
+  const contentContainer = document.getElementById("content-container")
+  contentContainer.innerHTML = "";
+  contentContainer.classList.add("grid")
+  const res = await fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+  const data = await res.json()
+  const videoData = data.videos;
+  const sortedVideos = videoData.sort((a, b) => parseFloat((b.others.views).slice(0, 3)) - parseFloat((a.others.views).slice(0, 3)))
+  sortedVideos.forEach(element => {
+    // time calculation
+    const time = element.others.posted_date;
+    const hour = parseInt(time / 3600);
+    const timeMinute = time % 3600;
+    const minute = parseInt(timeMinute / 60);
+    const second = timeMinute % 60;
+    // create a div
+    const card = document.createElement("div")
+    card.innerHTML = `
+        <div class="card bg-base-100 shadow-sm">
+           <figure class="relative">
+             <img class=" h-48 w-96 object-cover"
+               src="${element.thumbnail}"
+               alt="Videos" />
+               <div style="${time ? 'display:block' : 'display:none'}" class="absolute bg-slate-800 text-white text-[12px] font-bold p-1 rounded-sm bottom-3 right-2">${hour} hr ${minute} min ${second} second ago </div>
+           </figure>
+           <div class="p-2 space-y-2 flex gap-3 items-start">
+           <img class="w-10 h-10 rounded-full object-cover" src="${element.authors[0].profile_picture}"/>
+           <div class="">
+             <h2 class=" font-bold">${element.title}</h2>
+             <p class="text-sm flex items-center gap-2">${element.authors[0].profile_name}<span>${element.authors[0].verified ? '<img class="w-5" src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" alt="" />' : ""}</span></p>
+             <p class="text-sm font-semibold">${element.others.views}</p>
+           </div>             
+           </div>
+         </div>
+        `
+    contentContainer.append(card)
+  });
+}
